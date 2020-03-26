@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>thymeleaf测试</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../static/css/style.css"
+          th:href="@{css/style.css}" />
+    <script type="text/javascript" src="../static/js/thymeleaf.js"
+            th:src="@{js/thymeleaf.js}"></script>
+
+    <style>
+        h2{
+            text-decoration: underline;
+            font-size: 0.9em;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <!-- 普通遍历 th:each -->
+    <div class="showing">
+        <h2>普通遍历</h2>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>姓名</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="c:${cs}">
+                    <td th:text="${c.getId()}"></td>
+                    <td th:text="${c.getName()}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- 带状态的遍历-->
+    <div class="showing">
+        <h2>带状态的遍历</h2>
+
+        <table border="1">
+            <thead>
+            <tr>
+                <th>index</th>
+                <th>id</th>
+                <th>姓名</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:class="${status.even}?'even':'odd'" th:each="c,status: ${cs}">
+                <td th:text="${status.index}"></td>
+                <td th:text="${c.getId()}"></td>
+                <td th:text="${c.getName()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 遍历+select效果-->
+    <!-- 其中 th:selected 表示被选中的项。-->
+    <div class="showing">
+        <h2>select效果遍历</h2>
+
+        <select size="1">
+            <option th:each="c:${cs}" th:value="${c.id}"
+                    th:selected="${c.id==2}" th:text="${c.getName()}">
+
+            </option>
+        </select>
+    </div>
+</body>
+</html>

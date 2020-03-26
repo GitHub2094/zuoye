@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>thymeleaf测试</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../static/css/style.css"
+          th:href="@{css/style.css}" />
+    <script type="text/javascript" src="../static/js/thymeleaf.js"
+            th:src="@{js/thymeleaf.js}"></script>
+
+    <style>
+        h2{
+            text-decoration: underline;
+            font-size: 0.9em;
+            color: gray;
+        }
+        div.date p{
+            padding-left:20px;
+            color:gray;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="showing">
+        <h2>条件判断</h2>
+        <p th:if="${testBoolean}" >如果testBoolean 是 true ，本句话就会显示</p>
+        <p th:if="${not testBoolean}" >取反 ，所以如果testBoolean 是 true ，本句话就不会显示</p>
+        <p th:unless="${testBoolean}" >unless 等同于上一句，所以如果testBoolean 是 true ，本句话就不会显示</p>
+        <p th:text="${testBoolean}?'当testBoolean为真的时候，显示本句话，这是用三相表达式做的':''" ></p>
+    </div>
+
+    <div class="showing">
+        <h2>显示转义和非转义</h2>
+        <p th:text="${htmlContent}"></p>
+        <p th:utext="${htmlContent}"></p>
+    </div>
+
+    <div class="showing">
+        <h2>显示对象以及对象属性</h2>
+        <p th:text="${category}"></p>
+        <p th:text="${category.getName()}"></p>
+        <p th:text="${category.name}"></p>
+    </div>
+
+    <div class="showing" th:object="${category}">
+        <h2>*{}方式显示属性</h2>
+        <p th:text="*{name}"></p>
+    </div>
+
+    <div class="showing">
+        <h2>算数运算</h2>
+        <p th:text="${category.id+88}"></p>
+    </div>
+
+    <div class="showing">
+        <div th:replace="include::footer1"></div>
+        <div th:replace="include::footer2(2016,2020)"></div>
+    </div>
+
+    <div class="showing">
+        <h2>格式化日期</h2>
+        直接输出日期 ${now}:
+        <p th:text="${now}" </p>
+        默认格式化 ${#dates.format(now)}:
+        <p th:text="${#dates.format(now)}"></p>
+        自定义格式化 ${#dates.format(now,'yyyy-MM-dd HH:mm:ss')}:
+        <p th:text="${#dates.format(now,'yyyy-MM-dd HH:mm:ss')}"></p>
+
+
+
+    </div>
+
+</body>
+</html>

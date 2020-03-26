@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<!-- 声明thymeleaf -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>thymeleaf测试</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../static/css/style.css"
+          th:href="@{css/style.css}" />
+    <script type="text/javascript" src="../static/js/thymeleaf.js"
+            th:src="@{js/thymeleaf.js}"></script>
+
+    <script>
+        testFunction();
+    </script>
+</head>
+<body>
+<div class="showing">
+    <p th:text="${name}">name</p>
+    <p th:text=" 'hello!'+ ${name}  ">hello world</p>
+    <p th:text="|Hello！ ${name}!|">hee</p>
+</div>
+</body>
+</html>

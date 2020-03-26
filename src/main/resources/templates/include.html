@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <!-- 不带参数的-->
+    <footer th:fragment="footer1">
+        <p >All Rights Reserved</p>
+    </footer>
+    <!-- 不带参数的-->
+    <footer th:fragment="footer2(strat,now)">
+        <p th:text="|${strat}--${now} All Rights Reserved|"></p>
+    </footer>
+
+
+</html>
